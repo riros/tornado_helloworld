@@ -1,27 +1,21 @@
-import tornado
-from tornado import ioloop
+from tornado.ioloop import IOLoop
 from tornado.options import define, options
-from tornado.web import RequestHandler
 
-from views import NumbersStoreHandler, TestHandler
+from application import app
 
 
 define("port", default=8888, help="run on the given port", type=int)
 
 
 def make_app():
-    return tornado.web.Application([
-        (r"/", NumbersStoreHandler),
-        (r"/test", TestHandler),
-
-    ])
+    return app
 
 
 def main():
     options.parse_command_line()
     app = make_app()
     app.listen(options.port)
-    tornado.ioloop.IOLoop.current().start()
+    IOLoop.current().start()
 
 
 if __name__ == "__main__":
