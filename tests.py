@@ -18,27 +18,28 @@ class NumbersTestCase(AsyncHTTPTestCase):
         return response.body.decode('utf-8')
 
     def test_http_fetch(self):
+        """ проверка базовой функциональности работы сервера """
         response = self.fetch('/test')
         self.assertEqual(response.code, 200)
         self.assertEqual(response.body, b'Ok')
 
     def test_crud(self):
         """
-        Проверка основной логики
+        Проверка основной логики приложения
         :return:
         """
         test_dict = {'data': 'ddd'}
 
-        # test init
+        # проверит начальные значения данных
         response = self.fetch('/')
         self.assertEqual(response.body, b'{}')
 
-        # test update
+        # обновление данных
         response = self.send_post('/', test_dict)
         self.assertEqual(response.code, 200)
         self.assertEqual(self.body_string(response), json.dumps(test_dict))
 
-        # test delete
+        # обнуление данных
         response = self.fetch('/', method='DELETE')
         self.assertEqual(response.code, 200)
         self.assertEqual(self.body_string(response), json.dumps({}))
