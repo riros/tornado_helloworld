@@ -1,0 +1,6 @@
+tornado~=6.1
+pytest-tornado
+
+# Database
+tortoise-orm[asyncpg]
+asyncpg

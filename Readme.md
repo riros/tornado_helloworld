@@ -2,7 +2,7 @@
 
 #### to run
 <pre>
-python main.py
+python run.py
 </pre>
 
 #### to test

@@ -13,9 +13,9 @@ def make_app():
 
 def main():
     options.parse_command_line()
-    app = make_app()
-    app.listen(options.port)
-    IOLoop.current().start()
+    application = make_app()
+    application.listen(options.port)
+    loop = IOLoop.current().start()
 
 
 if __name__ == "__main__":
